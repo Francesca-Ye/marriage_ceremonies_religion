@@ -1,10 +1,9 @@
 ---
-title: "My title"
+title: "Analysis of Marriage Ceremony Type (Civil and Religious) in England and Wales Between 2016-2020"
 subtitle: "My subtitle if needed"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Francesca Ye
+thanks: "Code and data are available at: https://github.com/Francesca-Ye/marriage_ceremonies_religion"
 date: today
 date-format: long
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
