@@ -1,8 +1,8 @@
-# Analysis of Marriage Ceremony Locations (Religious and Non-Religious) Over Time
+# Analysis of Marriage Ceremony Locations (Religious and Non-Religious) Between 2016 to 2020
 
 ## Overview
 
-This repo provides a paper and related resources to analysing the number of civil and religious marriage ceremonies in England and Wales over a five year period of 2020-2016. 
+This repo provides a paper and related resources to analysing the number of civil and religious marriage ceremonies in England and Wales over a five year period of 2016 to 2020. 
 
 
 ## File Structure
