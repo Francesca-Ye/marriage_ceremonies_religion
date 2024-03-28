@@ -1,11 +1,11 @@
 #### Preamble ####
-# Purpose: Models... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Models for Marriage Ceremony Type
+# Author: Francesca Ye
+# Date: 28 March 2024
+# Contact: francesca.ye@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: cleaned data set from `02-data_cleaning.R`
+# Any other information needed? No
 
 
 #### Workspace setup ####
