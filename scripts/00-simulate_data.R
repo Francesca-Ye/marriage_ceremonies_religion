@@ -10,10 +10,40 @@
 
 #### Workspace setup ####
 library(tidyverse)
-# [...UPDATE THIS...]
+library(tibble)
 
 #### Simulate data ####
-# [...ADD CODE HERE...]
+set.seed(777)
 
+simulated_marriage_ceremony_data <-
+  tibble(
+    "Year" = 2016:2020,
+    "Civil" = sample(
+      x = c(0:250000),
+      size = 5,
+      replace = TRUE
+    ), 
+    "CoE" = sample(
+      x = c(0:250000),
+      size = 5,
+      replace = TRUE
+    ), 
+    "Catholic" = sample(
+      x = c(0:250000),
+      size = 5,
+      replace = TRUE
+    ),
+    "Other_Christian" = sample(
+      x = c(0:250000),
+      size = 5,
+      replace = TRUE
+    ),
+    "Other" = sample(
+      x = c(0:250000),
+      size = 5,
+      replace = TRUE
+    )
+  )
 
+print(simulated_marriage_ceremony_data)
 
