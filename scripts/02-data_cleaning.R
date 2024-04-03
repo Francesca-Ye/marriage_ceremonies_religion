@@ -34,6 +34,7 @@ raw_same_data <- read_csv("~/marriage_ceremonies_religion/data/raw_data/02-raw_s
 raw_same_data <- clean_names(raw_same_data)
 
 # Select only rows from 2016 to 2020
+# Referenced function structure from https://www.statology.org/r-remove-rows-from-data-frame-condition
 raw_same_data <- subset(raw_same_data, (year %in% c(2016:2020)))
 
 # Rename columns
