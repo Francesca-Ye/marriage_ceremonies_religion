@@ -4,40 +4,46 @@
 # Date: 28 March 2024
 # Contact: francesca.ye@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: Access to the raw data file `marriagesworkbook2020.xlsx`
+# Pre-requisites: Access to the raw data file `01-raw_opposite_sex_data.CSV`and `raw_same_sex_data.CSV`
 
 #### Workspace setup ####
 library(tidyverse)
+library(janitor)
+library(arrow)
 
 #### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+## Opposite-sex cleaning
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+# Load data and skip rows with introduction notes
+raw_opposite_data <- read_csv("~/marriage_ceremonies_religion/data/raw_data/01-raw_opposite_sex_data.CSV", skip = 5)
+raw_opposite_data <- clean_names(raw_opposite_data)
 
-#### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+# Select only rows for 2016 to 2020
+# Referenced function structure from https://www.statology.org/r-remove-rows-from-data-frame-condition
+raw_opposite_data <- subset(raw_opposite_data, (source_office_for_national_statistics %in% c(2016:2020)))
+
+# Remove columns not necessary for analysis 
+raw_opposite_data <- subset(raw_opposite_data, select = -c(na_7))
+
+# Rename columns
+colnames(raw_opposite_data) <- c("year", "all_marriages", "all_civil", "approved_civil", "all_religious", "coe", "rc", "other_christian", "other_religion")
+
+## Same-sex cleaning
+raw_same_data <- read_csv("~/marriage_ceremonies_religion/data/raw_data/02-raw_same_sex_data.CSV", skip = 5)
+raw_same_data <- clean_names(raw_same_data)
+
+# Select only rows from 2016 to 2020
+raw_same_data <- subset(raw_same_data, (year %in% c(2016:2020)))
+
+# Rename columns
+colnames(raw_same_data) <- c("year", "all_marriages", "male", "female", "all_civil", "approved_civil", "all_religious")
+
+#### Save data as parquet files ####
+
+## Opposite-sex
+write_parquet(x = raw_opposite_data,
+              sink = "~/marriage_ceremonies_religion/data/analysis_data/00-cleaned_opposite_sex_data.parquet")
+
+## Same-sex
+write_parquet(x = raw_same_data,
+              sink = "~/marriage_ceremonies_religion/data/analysis_data/01-cleaned_same_sex_data.parquet")
