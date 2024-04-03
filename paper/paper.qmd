@@ -1,155 +1,71 @@
 ---
-title: "Analysis of Marriage Ceremony Type (Civil and Religious) in England and Wales Between 2016-2020"
-subtitle: "My subtitle if needed"
+title: "[WIP] Church Bells are Not Ringing: Decrease in the Opposite-Sex and Same-Sex Couples Opting for Religous Marriage Ceremonies in England and Wales"
+subtitle: "Analysis and Comparitive Study of Marriage Ceremony Type (Civil and Religious) for Opposite-Sex (1970 to 2020) and Same-Sex (2016 to 2020) Couples "
 author: 
   - Francesca Ye
 thanks: "Code and data are available at: https://github.com/Francesca-Ye/marriage_ceremonies_religion"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "This paper invesitgates the annual number of marriage conducted in England and Wales based on ceremony type which encompasses civil or relgious in addition to the different types of religous denominations (Church of England, Roman Catholic, etc) recorded the by the Office of National Statistics. Based on the data set, these trends between 1970 to 2020 were analyzed for opposite-sex couples and between 2016 to 2020 for same-sex couples in tandem with comparitive study on differences in preference between couple type. Analysis found that religious ceremonies have been overtaken by civil ceremonies as the predominant ceremony type for opposite-sex couples whilst same-sex couples have always preferred civil ceremonies since the recording of their data. Considering larger social changes and the prevalance of individual religiosity, the results of this paper appear to indicate that religion is becoming less of an inetgral facet of life in England and Wales based on religion becoming less synonymous with marriage."
 format: pdf
 number-sections: true
+toc: true
 bibliography: references.bib
 ---
-
 ```{r}
-#| include: false
-#| warning: false
 #| message: false
+#| echo: false
+#| warning: false
+#### Work space set-up ####
 
+## Load packages
+library(tinytex)
 library(tidyverse)
-library(palmerpenguins)
+library(ggplot2)
+library(knitr)
+library(arrow)
+
+## Read in cleaned data 
+opposite_sex <- read_parquet("~/marriage_ceremonies_religion/data/analysis_data/00-cleaned_opposite_sex_data.parquet")
+
+same_sex <- read_parquet("~/marriage_ceremonies_religion/data/analysis_data/01-cleaned_same_sex_data.parquet")
 ```
 
+# Introduction {#sec-intro}
+In the United Kingdom, there has been increasing research and attention towards the decline of the importance of religion in individual life. The Policy Institute at King’s College London has collected data which corroborates this trend. In 1981, 57% of Britons identified as religious while that number has decreased to 32% in 2022. Similarly, 75% of Britons believed in God when surveyed in 1981 and that number has significantly fallen to 49% in 2022 [@ukreligion]. However, these trends are not unique to the United Kingdom, religiosity across most Western countries has declined over the past couple of decades. The number of people in the United States that identified as religious fell from 82% in 1982 to 58% in 2017 [@ukreligion]. 
 
-# Introduction
+Despite the overall decline in religiosity, there are also generational differences in religious belief; as noted in the United Kingdom where only 48% of Baby Boomers expressed a belief in God in comparison to Gen Z at 37% [@ukreligion]. These generational differences and societal changes can be examined through data on marriage pertaining to the annual number of civil and religious ceremonies conducted. Although there is a degree of separation between civil and religious marriage, the practice has held heavy religious significance historically. Therefore, the types of marriage ceremonies people are opting for can serve as a representation of the overall religiosity of a country depending on the number of citizens that continue to ascribe religious significance to the legal act of marriage [@marriagedeclineuk]. 
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+This paper takes data from the Office for National Statistics in the United Kingdom from the 2020 edition of the Marriages in England and Wales data set to examine if the presence of religion in legal marriage has declined over time in tandem with answering if the result is difference between same and opposite sex couples. The estimand of interest is the presence of religion in consolidating a legal marriage. To examine whether or not religion in marriage has declined, graphical analysis was conducted to visualize the annual data on marriage ceremony type between 1970 to 2020 for opposite-sex couples and 2016 to 2020 for same-sex couples. Summary statistics were also calculated to get a greater idea of the numerical significance of religion in this space. This paper finds that religion in the context of marriage has declined over the years in addition to same-sex couples more strongly preferring civil ceremonies in comparison to opposite-sex couples. 
 
-The remainder of this paper is structured as follows. @sec-data....
-
+[@sec-data] of this report aims to discuss the characteristics of the data set examined in addition to the methods of cleaning applied to get workable data for this report. This report’s [@sec-results] highlights trends discovered through graphical analysis in tandem with statistical analysis. [@sec-discussion] notes possible analytical limitations and measurement errors in the data sets in addition to overall insights of the report’s analysis. Specific discussion will surround the validity of using marriage as an indicator of religiosity in further detail. [@sec-future] aims to explore further research that could be conducted in this field based on the findings presented in this report.
 
 
 # Data {#sec-data}
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
-
-```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
-
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
-
-```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
-#| echo: false
-#| warning: false
-#| message: false
-
-analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
-
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
-```
-
-Talk way more about it. 
-
-
-
 # Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
 ## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
 ### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
+# Results {#sec-results}
 ```{r}
-#| echo: false
-#| eval: true
-#| warning: false
 #| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
-```
-
-```{r}
 #| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
 #| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
+#| label: fig-oppositecivilvsreligious
+#| fig-cap: Annual Amount of Civil and Religious Ceremonies Between 1970 to 2020 in England and Wales for Opposite-Sex Couples
+ggplot(opposite_sex, aes(x = year)) + 
+  geom_line(aes(y = all_civil), color = "darkred") + 
+  geom_line(aes(y = all_religious), color="steelblue")  +
+  theme_minimal() +
+  scale_x_continuous(breaks = seq(1970, 2020, 5)) +
+  scale_y_continuous(breaks = seq(0, 300000, 20000))+
+  labs(x = "Year", y = "Number of Ceremonies Conducted")
 ```
 
-
-
-
-# Discussion
-
+# Discussion {#sec-discussion}
 ## First discussion point {#sec-first-point}
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
 ## Second discussion point
-
 ## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
+## Weaknesses and Future Research {#sec-future}
 
 \newpage
 
@@ -157,63 +73,11 @@ Weaknesses and next steps should also be included.
 
 # Appendix {-}
 
-
 # Additional data details
 
 # Model details {#sec-model-details}
 
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
-```
-
-
-
 \newpage
-
 
 # References
 
