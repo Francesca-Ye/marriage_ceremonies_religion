@@ -29,6 +29,13 @@ raw_opposite_data <- subset(raw_opposite_data, select = -c(na_7))
 # Rename columns
 colnames(raw_opposite_data) <- c("year", "all_marriages", "all_civil", "approved_civil", "all_religious", "coe", "rc", "other_christian", "other_religion")
 
+# Remove blank values
+raw_opposite_data$other_religion <-
+  ifelse(raw_opposite_data$other_religion == "[x]", 0, raw_opposite_data$other_religion)
+
+raw_opposite_data$approved_civil <-
+  ifelse(raw_opposite_data$approved_civil == "[z]", 0, raw_opposite_data$approved_civil)
+
 # All values to numeric 
 raw_opposite_data[] <- lapply(raw_opposite_data, type.convert, as.is = TRUE)
 
