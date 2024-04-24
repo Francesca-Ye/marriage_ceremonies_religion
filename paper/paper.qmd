@@ -269,6 +269,10 @@ Political science professor at the University of Michigan, Ronald F. Inglehart, 
 ## Implication: Fewer Citizens Identify as Christian
 Interestingly, the marriage ceremony data analysed and discussed in this paper also indicate that Christianity is becoming less popular or prominent in the lives of English and Welsh citizens. As seen in @fig-oppositereligioustypes, all sects of Christianity have experienced a decrease in the annual number of marriage ceremonies conducted. This implies that less couples are religiously involved in Christianity to the extent of including it in their marriage plans. 
 
+Looking to "Religion, England and Wales: Census 2021" from the *Office for National Statistics* provides further insight on whether or not religious identification and marriage ceremony type are congruent in their data. In the 2021 census, 46.2% (27.5 million) identified as Christian in comparison to 59.3% (33.3 million) in 2011 [@census2021]. Although Christianity still remains the most popular religion in England and Wales, the decrease over a decade is still somewhat significant as less than half the population now identifies as Christian. This reflected on a smaller level in the marriage ceremony data, as seen in @fig-oppositereligiousten, since all Christian sects experienced a decline in annual marriage ceremonies with the Church of England seeing a reduction of just under 40,000 ceremonies in 2020 compared to 2011. 
+
+
+
 ## Implication: Same-Sex Couples Overwhelmingly Prefer Civil Ceremonies
 ## Limitations
 ## Future Research {#sec-future}
