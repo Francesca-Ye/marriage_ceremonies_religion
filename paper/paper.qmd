@@ -45,7 +45,6 @@ This paper finds that religion in the context of marriage has declined over the 
 
 
 # Data {#sec-data}
-
 ## Data Description
 The data sets for same and opposite-sex couples were derived from the *Office for National Statistics in the United Kingdom* with the 2020 edition of the “Marriages in England and Wales” workbook as raw data. This data is collected at the time a marriage is registered as part of civil registration which is a legal requirement in completing a legally recognized marriage in England and Wales. Annual marriage statistics are available to the public approximately two years after the end of the reference year [@statsguide]. Notably, same-sex couples that are currently in a civil partnership can have it converted to a marriage but these numbers are not counted towards the marriage statistics of same-sex couples in the workbook. The data collected and used in this paper is used to measure the number of couples that opt for civil or religious marriage ceremonies on a yearly basis [@statsguide]. 
 
@@ -135,7 +134,7 @@ As shown in @fig-samecivilvsreligious, the number of civil ceremonies has consis
 For civil ceremonies, the average amount of annual ceremonies conducted was 6036.6 with a median of 6862. The average amount of annual religious ceremonies conducted was 46.4 with a median of 48. For standard deviations, civil ceremonies were 1815.576 and 18.48783 for religious ceremonies. In this instance, the larger variation in annual totals for civil ceremonies could be a result of the larger volume of ceremonies conducted. Since religious ceremonies conducted annually have consistently been in the double digits, the low standard deviation makes sense when viewing @fig-samecivilvsreligious as the line appears to be trending as an almost straight line. 
 
 # Results {#sec-results}
-Looking at the graphed data and summary statistics, there appears to be a clear decline in the number of opposite-sex couples opting for a religious ceremony across a fifty-year timeframe between 1970 and 2020. For same-sex couples, civil ceremonies have consistently and overwhelmingly been the most popular ceremony type since the legalization of same-sex marriage in 2014. The latter phenomenon is likely best explained by the relationship between religion and homophobia. Barbara Finlay and Carol S. Walter’s work in *Review of Religious Research* found that Protestants had the highest homophobia scores followed by Catholics, other Christian denominations, and other religions [@homophobiaresearch]. As same-sex religious ceremonies are conducted and approved by each religious authority [@statsguide], it could be possible that religious leaders do not approve of same-sex marriages. Another reason for the lack of same-sex religious ceremonies could also be non-heterosexual individuals moving away from religiosity due to conflicts between religious thought and their sexual identities. 
+Looking at the graphed data and summary statistics, there appears to be a clear decline in the number of opposite-sex couples opting for a religious ceremony across a fifty-year timeframe between 1970 and 2020. For same-sex couples, civil ceremonies have consistently and overwhelmingly been the most popular ceremony type since the legalization of same-sex marriage in 2014.
 
 ## Opposite-Sex Religious Ceremony Type
 ```{r}
@@ -144,16 +143,36 @@ Looking at the graphed data and summary statistics, there appears to be a clear 
 #| warning: false
 #| label: fig-oppositereligioustype
 #| fig-pos: "H"
-#| fig-cap: Annual Amount of Church of England (Red), Roman Catholic (Blue), Other Christian Denominations (Green), and Other Relgion Ceremonies (Purple) Conducted Between 1970 and 2020 in England and Wales for Opposite-Sex Couples
+#| fig-cap: Annual Amount of Church of England (Red), Roman Catholic (Yellow), Other Christian Denominations (Green), and Other Relgion Ceremonies (Purple) Conducted Between 1970 and 2020 in England and Wales for Opposite-Sex Couples
 
 ggplot(opposite_sex, aes(x = year)) + 
   geom_line(aes(y = coe), color = "darkred") + 
-  geom_line(aes(y = rc), color="steelblue")  +
+  geom_line(aes(y = rc), color="yellow")  +
   geom_line(aes(y = other_christian), color="darkgreen")  +
   geom_line(aes(y = other_religion), color="darkviolet")  +
   theme_minimal() +
   scale_x_continuous(breaks = seq(1970, 2020, 5)) +
   scale_y_continuous(breaks = seq(0, 175000, 15000))+
+  labs(x = "Year", y = "Number of Ceremonies Conducted")
+```
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: fig-oppositereligioustypeten
+#| fig-pos: "H"
+#| fig-cap: Annual Amount of Church of England (Red), Roman Catholic (Yellow), Other Christian Denominations (Green), and Other Relgion Ceremonies (Purple) Conducted Between 2010 and 2020 in England and Wales for Opposite-Sex Couples
+
+ten_year <- subset(opposite_sex, year >= 2010 & year <= 2020)
+ggplot(ten_year, aes(x = year)) + 
+  geom_line(aes(y = coe), color = "darkred") + 
+  geom_line(aes(y = rc), color="yellow")  +
+  geom_line(aes(y = other_christian), color="darkgreen")  +
+  geom_line(aes(y = other_religion), color="darkviolet")  +
+  theme_minimal() +
+  scale_x_continuous(breaks = seq(2010, 2020, 1)) +
+  scale_y_continuous(breaks = seq(0, 60000, 5000))+
   labs(x = "Year", y = "Number of Ceremonies Conducted")
 ```
 
@@ -181,10 +200,11 @@ ggplot(same_sex_demographics, aes(x = year, y = Count, fill = Sex)) +
 
 
 # Discussion {#sec-discussion}
-## First discussion point {#sec-first-point}
-## Second discussion point
-## Third discussion point
-## Weaknesses and Future Research {#sec-future}
+## Implication: Religiosity has decreased in England and Wales
+## Implication: Same-Sex Couples Overwhelmingly Prefer Civil Ceremonies
+## Implication: 
+## Limitations
+## Future Research {#sec-future}
 
 \newpage
 
