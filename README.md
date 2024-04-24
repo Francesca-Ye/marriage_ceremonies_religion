@@ -1,9 +1,8 @@
-# Analysis of Marriage Ceremony Locations (Religious and Non-Religious) Between 2016 to 2020
+# Analysis and Comparative Study of Marriage Ceremony Type (Civil and Religious) for Opposite-Sex (1970 to 2020) and Same-Sex (2016 to 2020) Couples
 
 ## Overview
 
-This repo provides a paper and related resources to analysing the number of civil and religious marriage ceremonies in England and Wales over a five year period of 2016 to 2020. 
-
+This paper investigates the annual number of marriage conducted in England and Wales based on ceremony type recorded the by the Office of National Statistics. Based on the data set, these trends between 1970 to 2020 were analyzed for opposite-sex couples and between 2016 to 2020 for same-sex couples.
 
 ## File Structure
 
