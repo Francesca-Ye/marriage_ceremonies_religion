@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/Francesca-Ye/marriage_ceremonies_religion"
 date: today
 date-format: long
-abstract: "This paper investigates the annual number of marriage conducted in England and Wales based on ceremony type recorded the by the Office of National Statistics. Based on the data set, these trends between 1970 to 2020 were analyzed for opposite-sex couples and between 2016 to 2020 for same-sex couples in tandem with comparative study on couple type preferences. Analysis found that civil ceremonies have overtake civil cermonies as the predominant ceremony type for both couple types. The results of this paper indicate that religion is becoming less of an inetgral facet of life in England and Wales based on religion becoming less synonymous with marriage."
+abstract: "This paper investigates the annual number of marriage conducted in England and Wales based on ceremony type recorded the by the Office of National Statistics. Based on the data set, these trends between 1970 to 2020 were analyzed for opposite-sex couples and between 2016 to 2020 for same-sex couples in tandem with comparative study on couple type preferences. Analysis found that civil ceremonies have overtake civil cermonies as the predominant ceremony type for both couple types. The results of this paper indicate that religion is less of an inetgral facet of life in England and Wales as indicated by religion becoming less synonymous with marriage."
 format: pdf
 number-sections: true
 toc: true
@@ -39,7 +39,7 @@ Despite the overall decline in religiosity, there are also generational differen
 
 This paper takes data from the *Office for National Statistics in the United Kingdom* from the 2020 edition of the "Marriages in England and Wales" data set to examine if the presence of religion in legal marriage has declined over time in tandem with answering if the result is difference between same and opposite sex couples. The estimand of interest is the presence of religion in consolidating a legal marriage. To examine whether or not religion in marriage has declined, graphical analysis was conducted to visualize the annual data on marriage ceremony type between 1970 to 2020 for opposite-sex couples and 2016 to 2020 for same-sex couples. Summary statistics were also calculated to get a greater idea of the numerical significance of religion in this space.
 
-This paper finds that religion in the context of marriage has declined over the years in addition to same-sex couples more strongly preferring civil ceremonies in comparison to opposite-sex couples. 
+This paper finds that religion in the context of marriage has declined over the years in addition to same-sex couples more strongly preferring civil ceremonies in comparison to opposite-sex couples. More specifically, religious ceremonies appears to be rapidly declining in popularity amongst opposite-sex couples over the past five decades whilst civil ceremonies appear to be comparatively more stable in annual totals. This could imply that religiosity has decreased in England and Wales as couples are choosing to not involve religion in a significant life event. Interestingly, same-sex couples have strongly preferred civil ceremonies since the legalization of same-sex marriage in 2014 which makes a difference between opposite-sex couples. The latter has seen an active decline whilst the former has maintained an aversion to religious marriage ceremonies. Although both result in a fewer religious ceremonies, this indicates that the move away from religion could be motivated by different factors such as homophobia within religion for same-sex couples.
 
 [@sec-data] of this report aims to discuss the characteristics of the data set examined in addition to the methods of cleaning applied to get workable data for this report. This report’s [@sec-results] highlights trends discovered through graphical analysis in tandem with statistical analysis. [@sec-discussion] notes possible analytical limitations and measurement errors in the data sets in addition to overall insights of the report’s analysis. Specific discussion will surround the validity of using marriage as an indicator of religiosity in further detail. [@sec-future] aims to explore further research that could be conducted in this field based on the findings presented in this report.
 
@@ -108,7 +108,7 @@ ggplot(opposite_sex, aes(x = year)) +
 
 As seen in @fig-oppositecivilvsreligious, the number of annual religious marriage ceremonies appears to have a clear downward trend from 1970 to 2020 which is contrasted by annual civil ceremonies that appear to have maintained somewhat more consistent levels throughout the 50 years. Interestingly, civil ceremonies were more popular than religious ceremonies between 1976 and 1980. However, from 1992, civil ceremonies were once again more popular and have consistently stayed ahead of religious ceremonies. After 1992, the gap between the amount of civil and religious ceremonies also appears to be exponentially widening as exemplified by 2015 where 17,6406 civil ceremonies were conducted in comparison to 6,2614 religious ceremonies. When solely viewing the annual total of religious and civil ceremonies conducted annually, it paints a clear picture of the decrease in religious marriage ceremonies. For both ceremony types, the decrease between 2019 and 2020 could be attributed to COVID-19-related lockdowns. 
 
-The average number of civil ceremonies conducted annually was 168,306.6 whilst the average for religious ceremonies was 130,945.3. Additionally, the medians were 168,897 and 127,522 respectively. The standard deviation for civil ceremonies was 17,601.7 and 59287.21 for religious ceremonies. Since the standard deviation of religious ceremonies is significantly higher, this corroborates @fig-oppositecivilvsreligious in supporting that the annual totals have had large variances whereas civil ceremonies have maintained a comparatively stable annual total. 
+The average number of civil ceremonies conducted annually was 168,306.6 whilst the average for religious ceremonies was 130,945.3. Additionally, the medians were 168,897 and 127,522 respectively. The standard deviation for civil ceremonies was 17,601.7 and 59,287.21 for religious ceremonies. Since the standard deviation of religious ceremonies is significantly higher, this corroborates @fig-oppositecivilvsreligious in supporting that the annual totals have had large variances whereas civil ceremonies have maintained a comparatively stable annual total. 
 
 ## Same-Sex Civil versus Religious Ceremonies
 ```{r}
@@ -155,6 +155,10 @@ ggplot(opposite_sex, aes(x = year)) +
   labs(x = "Year", y = "Number of Ceremonies Conducted")
 ```
 
+While @fig-oppositecivilvsreligious shows that the annual total of religious ceremonies as a whole have decreased, the annual total of of religious ceremonies sub categorized by type reveal a similar story. @fig-oppositereligioustype highlights that all Christian denominations have seen a decrease in the annual total of ceremonies conducted. While all other religions appears to be an outlier in this instance, the number of non-Christian religious ceremonies conducted has consistently been the least conducted type of ceremony amongst opposite-sex couples. Additionally, since the collection of data on non-Christian religious ceremonies, the standard deviation is relatively small at 810.76 which further highlights the minimal impact non-Christian ceremonies have on the larger data set combined with their unpopularity. As the only category with growth for religious ceremonies, this could mean that religiosity is not growing immensely outside of religiosity. 
+
+It is also apparent that Christianity has decreased in popularity for marriage ceremonies. Comparatively, Roman Catholic and other Christian denominations have seen decreases over a fifty-year period to a significant extent. The standard deviation for Roman Catholic is 10,788.53 and 11,781.59 for other Christian denominations which is considerably varied and highlights the significant drop in marriage ceremonies of these sects as seen in graphical analysis. However, the most notable drop would be Church of England ceremonies which had a standard deviation of 38,034.88, the largest, and when factoring in the downward graphical trend, it is clear that the Church of England has experienced major decreases in popularity for marriage ceremonies. Resultantly, Christian religious ceremonies have experienced somewhat extreme decreases in popularity that could imply changing individual and social attitudes on religion. 
+
 ```{r}
 #| message: false
 #| echo: false
@@ -174,6 +178,8 @@ ggplot(ten_year, aes(x = year)) +
   scale_y_continuous(breaks = seq(0, 60000, 5000))+
   labs(x = "Year", y = "Number of Ceremonies Conducted")
 ```
+
+By looking at the most recent decade, the decline in religious ceremonies still appears to be rapid. In @fig-oppositereligioustypeten, the peak of the decade for Church of England ceremonies is 2012 with 79,473; however, the lowest year excluding 2020 is 2019 with 39,897 ceremonies. There is almost a 40,000 ceremony drop between these two years which further indicate the decline of religious ceremonies and rapid pacing just over a ten-year period. As the most popular religion for marriage ceremonies by a considerable margin, the Church of England still appears to be experiencing significant drops in popularity.
 
 ```{r}
 #| message: false
@@ -204,6 +210,8 @@ head (opposite_decades) |>
   )
 ```
 
+@tbl-oppositedecades shows the total number of religious and civil ceremonies across five decades between 1971 and 2020. In the 1970s, religious ceremonies are more popular by just under 200,000 more ceremonies conducted. While both ceremony types see a decrease in the 1980s, the gap between the two is only about 100,000 with religious ceremonies still leading. Interestingly, civil ceremonies appear to minimally fluctuate by 100,000 ceremonies over the next three decades whilst religious ceremonies actively decrease in their decade summary. Religious ceremonies conducted in the 1970s was 1,995,792 in comparison to 567,934 in the 2010s. This is contrasted by civil ceremonies which saw 1,823,284 and 1,674,720 in the very same decades. Considering the decade summaries, it is clear that civil ceremonies have not necessarily increased by taking away from couples that might have opted for religious ceremonies due to their relative stability in numbers over time. It can also be ascertained that religious ceremonies have experienced a severe decreased over the past five decades as the annual total of ceremonies being conducted presently is just over a quarter to the number of ceremonies in the 1970s. 
+
 ## Same-Sex Couple Ceremony Totals
 ```{r}
 #| message: false
@@ -225,6 +233,8 @@ ggplot(same_sex_demographics, aes(x = year, y = Count, fill = Sex)) +
   theme_minimal() +
   scale_y_continuous(breaks = seq(0, 4000, 500))
 ```
+
+As seen in @fig-samecivilvsreligious, civil ceremonies for same-sex couples have consistently been the premier ceremony choice for couples intending to marry. @fig-samesexdemographics visualizes the annual number of couples that marry by sex. As shown in @fig-samesexdemographics, female couples have consistently married more than male couples in any given year. However, the gap between these totals are not large with 2019 representing the largest gap of 996 marriages. It can be derived that sex does not play a significant factor in the popularity of civil ceremonies as females do not make up a large majority of all same-sex married couples. Therefore, the unpopularity of religious ceremonies could be due to other factors which is touched upon in @sec-discussion.
 
 ```{r}
 #| message: false
@@ -248,6 +258,7 @@ head (same_sex_numbers) |>
 
 ```
 
+As same-sex marriage was only recently legalized, the six years of data was summed up by civil and religious to provide a greater insight on the preferences of same-sex couples. @tbl-samesextotals provides the total number of religious and civil ceremonies conducted for same-sex couples since 2014 and up to 2020. Civil ceremonies are clearly the more popular choice with just under 30,000 more ceremonies conducted. Of all same-sex marriage ceremonies conducted since the the inception of legalization, religious ceremonies only make up about 0.76% whilst civil ceremonies make up the rest. This differs with opposite-sex marriages as they have experienced a decline of religious ceremonies whereas religious ceremonies for same-sex marriages have been extremely unpopular from the outset of legalization. 
 
 # Discussion {#sec-discussion}
 ## Implication: Religiosity has Decreased in England and Wales
