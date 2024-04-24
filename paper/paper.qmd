@@ -279,6 +279,11 @@ As previously discussed, same-sex couples differ to opposite-sex couples in rega
 Looking at the graphed data and summary statistics, there appears to be a clear decline in the number of opposite-sex couples opting for a religious ceremony across a fifty-year timeframe between 1970 and 2020. For same-sex couples, civil ceremonies have consistently and overwhelmingly been the most popular ceremony type since the legalization of same-sex marriage in 2014. The latter phenomenon is likely best explained by the relationship between religion and homophobia. Barbara Finlay and Carol S. Walter’s work in *Review of Religious Research* found that Protestants had the highest homophobia scores followed by Catholics, other Christian denominations, and other religions [@homophobiaresearch]. As same-sex religious ceremonies are conducted and approved by each religious authority [@statsguide], it could be possible that religious leaders do not approve of same-sex marriages. Another reason for the lack of same-sex religious ceremonies could also be non-heterosexual individuals moving away from religiosity due to conflicts between religious thought and their sexual identities. 
 
 ## Limitations
+Despite this paper's effort to highlight how marriage ceremony data can be a reflection of the religious attitudes in England and Wales, there are some limitations that must be addressed.
+
+While the marriage ceremony data does seem to corroborate the overall decline of citizens identifying as religious, the marriage data might be slightly skewed in the population demographics that it collects from. As stated in research from King's College London, 48% of Baby Boomers expressed a belief in God in comparison to Gen Z at 37% in the United Kingdom [@ukreligion]. It is evident that there are differences in religiosity between generations, therefore it is possible that the marriage data could be skewed towards a decline of religiosity since those of ages more likely to marry belong to younger age generations such as Millenials and Gen Z's. 
+
+
 
 ## Future Research {#sec-future}
 
