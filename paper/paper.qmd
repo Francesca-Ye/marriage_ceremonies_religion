@@ -24,6 +24,7 @@ library(tidyverse)
 library(ggplot2)
 library(knitr)
 library(arrow)
+library(tidyr)
 
 ## Read in cleaned data 
 opposite_sex <- read_parquet("~/marriage_ceremonies_religion/data/analysis_data/00-cleaned_opposite_sex_data.parquet")
@@ -51,7 +52,7 @@ The data sets for same and opposite-sex couples were derived from the *Office fo
 The data of this paper focuses on the ceremony statistics for both same and opposite-sex couples. For same-sex couples, the data set focuses on 2014-2020. The variables in this data set are `all_marriages` which represents the total amount of same-sex marriages conducted in a specific year, `all_civil` which represents all civil ceremonies conducted, `approved_civil` which represents all civil ceremonies conducted at premises with pre-approval, and `all_religious` which represents all religious ceremonies conducted. For same-sex couples, the number of male and female couples that marry in a year is also recorded. For opposite-sex couples, the data set focuses on 1970-2020 since there was a larger set of data available for analysis in comparison to same-sex couple data. The variables in this data set are `all_marriages` which represents the total amount of same-sex marriages conducted in a specific year, `all_civil` which represents all civil ceremonies conducted, `approved_civil` which represents all civil ceremonies conducted at premises with pre-approval, and `all_religious` which represents all religious ceremonies conducted. Religious ceremonies are further separated with annual ceremonies conducted in the Church of England, Roman Catholic churches, other Christian religions, and all other religions also recorded. 
 
 ## Data Cleaning
-The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr], `tidyverse` [@tidyverse], and `readxl` [@readxl] packages. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], `janitor` [@janitor], `arrow` [@arrow], and `naniar` [@naniar] packages. To create tables and graphs for data visualization of the datasets, the `ggplot2` [@ggplot2] and `knitr` [@knitr] packages were used in tandem with `tinytex` [@tinytex] to create the paper format. 
+The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr], `tidyverse` [@tidyverse], and `readxl` [@readxl] packages. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], `janitor` [@janitor], `arrow` [@arrow], and `naniar` [@naniar] packages. To create tables and graphs for data visualization of the datasets, `ggplot2` [@ggplot2], `tidyr` [@tidyr], and `knitr` [@knitr] packages were used in tandem with `tinytex` [@tinytex] to create the paper format. 
 
 Generally, the data from the *National Office of Statistics* was taken without any modifications to most of the selected columns. The notable exception to this would be in the opposite-sex couple dataset where the `approved_civil` column had values of `[z]` and `[x]` in the `other_religions` column when no data was available for a specific year. Since this paper aimed to broadly look at a summary of religion in marriage ceremonies, these values were converted to 0s to continue calculating summary statistics for individual years. All of the values in both data sets were also converted from the character class to the numeric class which is a divergence from the original workbook produced by the *National Office of Statistics*. This decision was made to aid in calculating and graphing the data as there were no values that could not be converted to numeric aside from the two cases mentioned above. 
 
@@ -63,6 +64,7 @@ Generally, the data from the *National Office of Statistics* was taken without a
 #| label: fig-oppositecivilvsreligious
 #| fig-pos: "H"
 #| fig-cap: Annual Amount of Civil (Red) and Religious (Blue) Ceremonies Between 1970 to 2020 in England and Wales for Opposite-Sex Couples
+
 ggplot(opposite_sex, aes(x = year)) + 
   geom_line(aes(y = all_civil), color = "darkred") + 
   geom_line(aes(y = all_religious), color="steelblue")  +
@@ -84,6 +86,7 @@ The average number of civil ceremonies conducted annually was 168,306.6 whilst t
 #| label: fig-samecivilvsreligious
 #| fig-pos: "H"
 #| fig-cap: Annual Amount of Civil (Red) and Religious (Blue) Ceremonies Between 2014 and 2020 in England and Wales for Same-Sex Couples
+
 ggplot(same_sex, aes(x = year)) + 
   geom_line(aes(y = all_civil), color = "darkred") + 
   geom_line(aes(y = all_religious), color="steelblue")  +
@@ -99,6 +102,49 @@ For civil ceremonies, the average amount of annual ceremonies conducted was 6036
 
 # Results {#sec-results}
 
+## Opposite-Sex Religious Ceremony Type
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: fig-oppositereligioustype
+#| fig-pos: "H"
+#| fig-cap: Annual Amount of Church of England, Roman Catholic, Other Christian Denominations, and Other Relgion Ceremonies Conducted Between 1970 and 2020 in England and Wales for Opposite-Sex Couples
+
+ggplot(opposite_sex, aes(x = year)) + 
+  geom_line(aes(y = coe), color = "darkred") + 
+  geom_line(aes(y = rc), color="steelblue")  +
+  geom_line(aes(y = other_christian), color="darkgreen")  +
+  geom_line(aes(y = other_religion), color="darkviolet")  +
+  theme_minimal() +
+  scale_x_continuous(breaks = seq(1970, 2020, 5)) +
+  scale_y_continuous(breaks = seq(0, 175000, 15000))+
+  labs(x = "Year", y = "Number of Ceremonies Conducted")
+```
+
+## Same-Sex Couple Demographics
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: fig-samesexdemographics
+#| fig-pos: "H"
+#| fig-cap: Annual Amount of Marriage Ceremonies Conducted Between 2014 and 2020 in England and Wales for Opposite-Sex Couples by Sex
+
+same_sex_demographics <-
+  pivot_longer(same_sex, cols = c(male, female), names_to = "Sex", values_to = "Count")
+
+ggplot(same_sex_demographics, aes(x = year, y = Count, fill = Sex)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Year",
+       y = "Number of Married Couples") +
+  scale_fill_manual(values = c("darkred", "steelblue"),
+                    labels = c("Female", "Male")) +
+  theme_minimal() +
+  scale_y_continuous(breaks = seq(0, 4000, 500))
+```
+
+## Same-Sex 
 # Discussion {#sec-discussion}
 ## First discussion point {#sec-first-point}
 ## Second discussion point
