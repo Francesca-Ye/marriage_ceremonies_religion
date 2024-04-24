@@ -81,7 +81,6 @@ head (opposite_sex, 5) |>
 #| tbl-cap: Cleaned Same-Sex Marriage Ceremony Data
 
 # Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
-
 head (same_sex) |>
   kable(
     col.names = c("Year","Total Marriages","Male", "Female", "All Civil", "Approved Civil", "All Religious"),
@@ -162,21 +161,50 @@ ggplot(opposite_sex, aes(x = year)) +
 #| warning: false
 #| label: fig-oppositereligioustypeten
 #| fig-pos: "H"
-#| fig-cap: Annual Amount of Church of England (Red), Roman Catholic (Yellow), Other Christian Denominations (Green), and Other Relgion Ceremonies (Purple) Conducted Between 2010 and 2020 in England and Wales for Opposite-Sex Couples
+#| fig-cap: Annual Amount of Church of England (Red), Roman Catholic (Yellow), Other Christian Denominations (Green), and Other Relgion Ceremonies (Purple) Conducted Between 2011 and 2020 in England and Wales for Opposite-Sex Couples
 
-ten_year <- subset(opposite_sex, year >= 2010 & year <= 2020)
+ten_year <- subset(opposite_sex, year >= 2011 & year <= 2020)
 ggplot(ten_year, aes(x = year)) + 
   geom_line(aes(y = coe), color = "darkred") + 
-  geom_line(aes(y = rc), color="yellow")  +
+  geom_line(aes(y = rc), color = "yellow")  +
   geom_line(aes(y = other_christian), color="darkgreen")  +
   geom_line(aes(y = other_religion), color="darkviolet")  +
   theme_minimal() +
-  scale_x_continuous(breaks = seq(2010, 2020, 1)) +
+  scale_x_continuous(breaks = seq(2011, 2020, 1)) +
   scale_y_continuous(breaks = seq(0, 60000, 5000))+
   labs(x = "Year", y = "Number of Ceremonies Conducted")
 ```
 
-## Same-Sex Couple Demographics
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: tbl-oppositedecades
+#| tbl-cap: Total Amount of Marriage Ceremony Types Conducted by Decade (1971-2020)
+
+ten_year1 <- subset(opposite_sex, year >= 1971 & year <= 1980)
+ten_year2 <- subset(opposite_sex, year >= 1981 & year <= 1990)
+ten_year3 <- subset(opposite_sex, year >= 1991 & year <= 2000)
+ten_year4 <- subset(opposite_sex, year >= 2001 & year <= 2010)
+
+opposite_decades <-
+  data.frame(
+  type = c("Civil", "Religious"),
+  one = c(sum(ten_year1$all_civil), sum(ten_year1$all_religious)),
+  two = c(sum(ten_year2$all_civil), sum(ten_year2$all_religious)),
+  three = c(sum(ten_year3$all_civil), sum(ten_year3$all_religious)),
+  four = c(sum(ten_year4$all_civil), sum(ten_year4$all_religious)),
+  five = c(sum(ten_year$all_civil), sum(ten_year$all_religious)))
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+head (opposite_decades) |>
+  kable(
+    col.names = c("Ceremony Type","1971-1980","1981-1990", "1991-2000", "2001-2010", "2011-2020"),
+  booktabs = TRUE
+  )
+```
+
+## Same-Sex Couple Ceremony Totals
 ```{r}
 #| message: false
 #| echo: false
@@ -196,6 +224,28 @@ ggplot(same_sex_demographics, aes(x = year, y = Count, fill = Sex)) +
                     labels = c("Female", "Male")) +
   theme_minimal() +
   scale_y_continuous(breaks = seq(0, 4000, 500))
+```
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: tbl-samesextotals
+#| tbl-cap: Total Amount of Same-Sex Marriage Ceremonies Conducted Between 2014 to 2020
+
+same_sex_numbers <-
+  data.frame(
+    type = c("Civil", "Religious"),
+    value = c(sum(same_sex$all_civil), sum(same_sex$all_religious))
+  )
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+head (same_sex_numbers) |>
+  kable(
+    col.names = c("Ceremony Type", "Total Number of Ceremonies Conducted"),
+  booktabs = TRUE
+  )
+
 ```
 
 
