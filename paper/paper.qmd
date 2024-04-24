@@ -47,14 +47,48 @@ This paper finds that religion in the context of marriage has declined over the 
 # Data {#sec-data}
 
 ## Data Description
-The data sets for same and opposite-sex couples were derived from the *Office for National Statistics in the United Kingdom* with the 2020 edition of the “Marriages in England and Wales” workbook as raw data. This data is collected at the time a marriage is registered as part of civil registration which is a legal requirement in completing a legally recognized marriage in England and Wales. Annual marriage statistics are available to the public approximately two years after the end of the reference year [@statsguide]. Notably, same-sex couples that are currently in a civil partnership can have it converted to a marriage but these numbers are not counted towards the marriage statistics of same-sex couples in the workbook. The data collected and used in this paper is used to measure the number of couples that opt for civil or religious marriage ceremonies on a yearly basis [@statsguide]. By measuring marriage ceremony trends, it can help measure and provide insight onto greater social attitudes towards religion. Based on aforementioned literature about the perceived decline of religiosity in the United Kingdom, marriage ceremony data was chosen as a potential form of measuring this phenomena due to the historical link between marriage and religion [@marriagedeclineuk]. Since marriage is a significant life event, the presence and absence of religion in ceremonies can corroborate the decline of religiosity in individual life. These marriage ceremony entries in the "Marriages in England and Wales" workbook are a reflection of each couple's relationship with religion and whether or not it is strong enough to opt for a religious ceremony. Although the data set only reflects ceremony types, those entries were antedated by personal consideration of a couple's proximity to religion.
+The data sets for same and opposite-sex couples were derived from the *Office for National Statistics in the United Kingdom* with the 2020 edition of the “Marriages in England and Wales” workbook as raw data. This data is collected at the time a marriage is registered as part of civil registration which is a legal requirement in completing a legally recognized marriage in England and Wales. Annual marriage statistics are available to the public approximately two years after the end of the reference year [@statsguide]. Notably, same-sex couples that are currently in a civil partnership can have it converted to a marriage but these numbers are not counted towards the marriage statistics of same-sex couples in the workbook. The data collected and used in this paper is used to measure the number of couples that opt for civil or religious marriage ceremonies on a yearly basis [@statsguide]. 
+
+By measuring marriage ceremony trends, it can help measure and provide insight onto greater social attitudes towards religion. Based on aforementioned literature about the perceived decline of religiosity in the United Kingdom, marriage ceremony data was chosen as a potential form of measuring this phenomena due to the historical link between marriage and religion [@marriagedeclineuk]. Since marriage is a significant life event, the presence and absence of religion in ceremonies can corroborate the decline of religiosity in individual life. These marriage ceremony entries in the "Marriages in England and Wales" workbook are a reflection of each couple's relationship with religion and whether or not it is strong enough to opt for a religious ceremony. Although the data set only reflects ceremony types, those entries were antedated by personal consideration of a couple's proximity to religion.
 
 The data of this paper focuses on the ceremony statistics for both same and opposite-sex couples. For same-sex couples, the data set focuses on 2014-2020. The variables in this data set are `all_marriages` which represents the total amount of same-sex marriages conducted in a specific year, `all_civil` which represents all civil ceremonies conducted, `approved_civil` which represents all civil ceremonies conducted at premises with pre-approval, and `all_religious` which represents all religious ceremonies conducted. For same-sex couples, the number of male and female couples that marry in a year is also recorded. For opposite-sex couples, the data set focuses on 1970-2020 since there was a larger set of data available for analysis in comparison to same-sex couple data. The variables in this data set are `all_marriages` which represents the total amount of same-sex marriages conducted in a specific year, `all_civil` which represents all civil ceremonies conducted, `approved_civil` which represents all civil ceremonies conducted at premises with pre-approval, and `all_religious` which represents all religious ceremonies conducted. Religious ceremonies are further separated with annual ceremonies conducted in the Church of England, Roman Catholic churches, other Christian religions, and all other religions also recorded. 
 
 ## Data Cleaning
 The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr], `tidyverse` [@tidyverse], and `readxl` [@readxl] packages. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], `janitor` [@janitor], `arrow` [@arrow], and `naniar` [@naniar] packages. To create tables and graphs for data visualization of the datasets, `ggplot2` [@ggplot2], `tidyr` [@tidyr], and `knitr` [@knitr] packages were used in tandem with `tinytex` [@tinytex] to create the paper format. 
 
-Generally, the data from the *National Office of Statistics* was taken without any modifications to most of the selected columns. The notable exception to this would be in the opposite-sex couple dataset where the `approved_civil` column had values of `[z]` and `[x]` in the `other_religions` column when no data was available for a specific year. Since this paper aimed to broadly look at a summary of religion in marriage ceremonies, these values were converted to 0s to continue calculating summary statistics for individual years. All of the values in both data sets were also converted from the character class to the numeric class which is a divergence from the original workbook produced by the *National Office of Statistics*. This decision was made to aid in calculating and graphing the data as there were no values that could not be converted to numeric aside from the two cases mentioned above. 
+Generally, the data from the *National Office of Statistics* was taken without any modifications to most of the selected columns. The notable exception to this would be in the opposite-sex couple dataset where the `approved_civil` column had values of `[z]` and `[x]` in the `other_religions` column when no data was available for a specific year. Since this paper aimed to broadly look at a summary of religion in marriage ceremonies, these values were converted to 0s to continue calculating summary statistics for individual years. All of the values in both data sets were also converted from the character class to the numeric class which is a divergence from the original workbook produced by the *National Office of Statistics*. This decision was made to aid in calculating and graphing the data as there were no values that could not be converted to numeric aside from the two cases mentioned above. Samples of the cleaned datasets produced are seen in @tbl-opposite and @tbl-same. 
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: tbl-opposite
+#| tbl-cap: Sample of Cleaned Opposite-Sex Marriage Ceremony Data
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+
+head (opposite_sex, 5) |>
+  kable(
+    col.names = c("Year","Total Marriages","All Civil", "Approved Civil", "All Religious", "Church of England", "Roman Catholic", "Other Christian Denominations", "Other Religions"),
+  booktabs = TRUE
+  )
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: tbl-same
+#| tbl-cap: Cleaned Same-Sex Marriage Ceremony Data
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+
+head (same_sex) |>
+  kable(
+    col.names = c("Year","Total Marriages","Male", "Female", "All Civil", "Approved Civil", "All Religious"),
+  booktabs = TRUE
+  )
+```
 
 ## Opposite-Sex Civil versus Religious Ceremonies
 ```{r}
