@@ -144,7 +144,7 @@ ggplot(same_sex_demographics, aes(x = year, y = Count, fill = Sex)) +
   scale_y_continuous(breaks = seq(0, 4000, 500))
 ```
 
-## Same-Sex 
+
 # Discussion {#sec-discussion}
 ## First discussion point {#sec-first-point}
 ## Second discussion point
