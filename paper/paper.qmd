@@ -133,7 +133,7 @@ As shown in @fig-samecivilvsreligious, the number of civil ceremonies has consis
 For civil ceremonies, the average amount of annual ceremonies conducted was 6036.6 with a median of 6862. The average amount of annual religious ceremonies conducted was 46.4 with a median of 48. For standard deviations, civil ceremonies were 1815.576 and 18.48783 for religious ceremonies. In this instance, the larger variation in annual totals for civil ceremonies could be a result of the larger volume of ceremonies conducted. Since religious ceremonies conducted annually have consistently been in the double digits, the low standard deviation makes sense when viewing @fig-samecivilvsreligious as the line appears to be trending as an almost straight line. 
 
 # Results {#sec-results}
-Looking at the graphed data and summary statistics, there appears to be a clear decline in the number of opposite-sex couples opting for a religious ceremony across a fifty-year timeframe between 1970 and 2020. For same-sex couples, civil ceremonies have consistently and overwhelmingly been the most popular ceremony type since the legalization of same-sex marriage in 2014.
+Looking at the graphed data and summary statistics, there appears to be a clear decline in the number of opposite-sex couples opting for a religious ceremony across a fifty-year time frame between 1970 and 2020. For same-sex couples, civil ceremonies have consistently and overwhelmingly been the most popular ceremony type since the legalization of same-sex marriage in 2014.Looking further into the data sets, it is apparent that preliminary conclusions from the summary data in @sec-data hold true after further analysis. 
 
 ## Opposite-Sex Religious Ceremony Type
 ```{r}
@@ -250,9 +250,9 @@ head (same_sex_numbers) |>
 
 
 # Discussion {#sec-discussion}
-## Implication: Religiosity has decreased in England and Wales
+## Implication: Religiosity has Decreased in England and Wales
+## Implication: Fewer Citizens Identify as Christian
 ## Implication: Same-Sex Couples Overwhelmingly Prefer Civil Ceremonies
-## Implication: 
 ## Limitations
 ## Future Research {#sec-future}
 
