@@ -21,4 +21,4 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-No aspects of the code were written with the use of LLMs at this moment. All references used for the code are cited in the specific files or in the paper. 
+No aspects of the code were written with the use of LLMs. All references used for the code are cited in the specific files or in the paper. 
