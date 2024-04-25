@@ -13,6 +13,7 @@ The repo is structured as:
 -   `other` contains relevant literature, details about LLM chat interactions, and sketches.
 -   `paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
 -   `scripts` contains the R scripts used to simulate, download and clean data.
+-   `shiny_app/app.R` contains the code to run a Shiny App that allows for an interactive view of the cleaned data sets used in the paper.
 
 ## How to Run
 - Run `scripts/01-download_data.R` to download raw data
