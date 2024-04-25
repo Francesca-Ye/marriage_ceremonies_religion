@@ -67,4 +67,4 @@ write_parquet(x = raw_same_data,
               sink = "~/marriage_ceremonies_religion/data/analysis_data/01-cleaned_same_sex_data.parquet")
 
 write_csv(x = raw_same_data,
-          file = "~/marriage_ceremonies_religion/data/analysis_data/04-cleaned_same_sex_data.csv")
+          file = "~/marriage_ceremonies_religion/data/analysis_data/03-cleaned_same_sex_data.csv")
