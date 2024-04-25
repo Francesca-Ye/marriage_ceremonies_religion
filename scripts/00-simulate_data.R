@@ -47,6 +47,7 @@ simulated_marriage_ceremony_data <-
 
 simulated_marriage_ceremony_data <- 
   simulated_marriage_ceremony_data %>%
+  # Code referenced from: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/rowsum
   mutate(Total_Ceremonies = rowSums(select(., -Year)))
 
 print(simulated_marriage_ceremony_data)
