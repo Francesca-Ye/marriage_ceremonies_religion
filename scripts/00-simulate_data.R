@@ -11,6 +11,7 @@
 #### Workspace setup ####
 library(tidyverse)
 library(tibble)
+library(raster)
 
 #### Simulate data ####
 set.seed(777)
@@ -47,7 +48,7 @@ simulated_marriage_ceremony_data <-
 
 simulated_marriage_ceremony_data <- 
   simulated_marriage_ceremony_data %>%
-  # Code referenced from: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/rowsum
+  # Code referenced from: https://www.rdocumentation.org/packages/raster/versions/3.6-23/topics/rowSums
   mutate(Total_Ceremonies = rowSums(select(., -Year)))
 
 print(simulated_marriage_ceremony_data)
