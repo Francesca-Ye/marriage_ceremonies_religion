@@ -56,6 +56,8 @@ raw_same_data[] <- lapply(raw_same_data, type.convert, as.is = TRUE)
 #### Save data ####
 
 ## Opposite-sex
+
+#Code referenced from: https://tellingstorieswithdata.com/29-activities.html#store-and-share
 write_parquet(x = raw_opposite_data,
               sink = "~/marriage_ceremonies_religion/data/analysis_data/00-cleaned_opposite_sex_data.parquet")
 
@@ -63,6 +65,8 @@ write_csv(x = raw_opposite_data,
           file = "~/marriage_ceremonies_religion/data/analysis_data/02-cleaned_opposite_sex_data.csv")
 
 ## Same-sex
+
+#Code referenced from: https://tellingstorieswithdata.com/29-activities.html#store-and-share
 write_parquet(x = raw_same_data,
               sink = "~/marriage_ceremonies_religion/data/analysis_data/01-cleaned_same_sex_data.parquet")
 
